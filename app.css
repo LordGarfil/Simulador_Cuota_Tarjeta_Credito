@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav{
+  padding:0 20px;
+  color: white;
+}
+
+.table tbody {
+  overflow-y: auto;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: 5% auto;
+  height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 30% auto;
+  gap: 5em;
+  align-self: center;
+}
+
+.config-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-self: auto;
+    margin-top: 2.3em;
+  }
+}
