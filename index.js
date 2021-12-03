@@ -1,4 +1,4 @@
-import { getTotal } from "./app.js"
+import { getTotal, moneyFormat } from "./app.js"
 
 window.onload = function () {
   const app = new App()
@@ -14,7 +14,6 @@ window.onload = function () {
       const value = input.value
       _inputs[key] = value
     })
-    console.log(_inputs)
     app.setData(_inputs)
     app.addRowsData()
   }
@@ -44,21 +43,31 @@ addRowsData(){
     plazo: this.plazo,
   },
 ]
+const money = moneyFormat()
   this.clearTable()
   const historia = getTotal(producto)
   const table = document.querySelector('table[name=response] tbody')
   historia.forEach(item => {
     const _historia = item.historia
-    _historia.forEach(element =>{
+    _historia.forEach(element =>{ 
       const tr = `
     <td>${element.mes}</td>
-    <td>${element.valor}</td>
-    <td>${element.interes}</td>
-    <td>${element.total}</td>
-    <td>${element.cuotaMinima}</td>
+    <td>${money.format(Math.round(element.valor))}</td>
+    <td>${money.format(Math.round(element.interes))}</td>
+    <td>${money.format(Math.round(element.total))}</td>
+    <td>${money.format(Math.round(element.cuotaMinima))}</td>
     `
     table.innerHTML += tr
     })
+    console.log(item)
+    const tr = `
+    <td>${item.total.mes}</td>
+    <td>${money.format(Math.round(item.total.valor))}</td>
+    <td>${money.format(Math.round(item.total.interes))}</td>
+    <td>${money.format(Math.round(item.total.total))}</td>
+    <td>${money.format(Math.round(item.total.cuotaMinima))}</td>
+    `
+    table.innerHTML += tr
   })
 }
 
